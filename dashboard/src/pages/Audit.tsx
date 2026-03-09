@@ -20,7 +20,7 @@ import { Fingerprint, Terminal, HardDrive } from 'lucide-react';
  * Displays the CDIF system audit interface comprising a CLI tail log panel
  * and a cluster metrics panel with utilization progress bars.
  *
- * [Lo] Component is fully presentational — it owns no mutable state and
+ * [Lo] Component is fully presentational - it owns no mutable state and
  *      accepts no props. All displayed values are compile-time constants.
  *
  * @returns {JSX.Element} Rendered audit page.
@@ -39,7 +39,7 @@ export default function AuditPage() {
                         System Audit <Fingerprint className="w-5 h-5 text-indigo-400" />
                     </h1>
                     <p className="text-sm font-medium text-slate-500 tracking-wide mt-1">
-                        Clinical Data Ingress Fabric (CDIF) — Historical Query and Logging Diagnostics
+                        Clinical Data Ingress Fabric (CDIF): Historical Query and Logging Diagnostics
                     </p>
                 </div>
             </motion.div>
@@ -52,16 +52,16 @@ export default function AuditPage() {
                         <Terminal className="w-4 h-4" /> Live System Logs
                     </h2>
                     <div className="flex-1 bg-black p-4 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-400/80 overflow-y-auto leading-loose whitespace-pre-wrap">
-                        {`[SYS] CDIF v1.0.0 initialising — fabric_layer=BRONZE_SAMPLE
-[Ac] FastAPI actuator surface active — POST /etl/clinical/sample | GET /health
-[Lo] Pydantic ClinicalTelemetry invariant schema loaded — v1.0
-[St] Vault path resolved — sample_clinical_vault.jsonl (append-only)
-[T]  Transformer ready — urgency scoring + ISO-8601 enrichment online
+                        {`[SYS] CDIF v1.0.0 initialising | fabric_layer=BRONZE_SAMPLE
+[Ac] FastAPI actuator surface active | POST /etl/clinical/sample | GET /health
+[Lo] Pydantic ClinicalTelemetry invariant schema loaded | v1.0
+[St] Vault path resolved | sample_clinical_vault.jsonl (append-only)
+[T]  Transformer ready | urgency scoring + ISO-8601 enrichment online
 [η] Resonance subsystem nominal. Boundary enforcement active; all ingress events logged.
 [WARN] INGRESS_ATTEMPT | patient=NODE412 | hr=185 | status=CRITICAL | urgency_index=1.0
-[Lo] VALIDATION_FAIL | patient_id='node-412' — rejected: must match ^[A-Z0-9]{6,12}$
+[Lo] VALIDATION_FAIL | patient_id='node-412' | rejected: must match ^[A-Z0-9]{6,12}$
 [η] INGRESS_OK | patient=PT001A | hr=145 | spo2=94.5 | urgency=1.0 | id=a3f7c2e1
-[St] Vault append confirmed — record persisted with UUID ingress_id
+[St] Vault append confirmed | record persisted with UUID ingress_id
 [η] HEALTH_CHECK | status=NOMINAL | vault_records=1 | fabric=CDIF v1.0.0`}
                     </div>
                 </section>

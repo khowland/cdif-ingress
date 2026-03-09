@@ -21,7 +21,7 @@ export default function LandingPage() {
             >
                 <div>
                     <h1 className="text-3xl font-semibold tracking-tight text-white flex items-center gap-3">
-                        CDIF Secure Data Pipeline <span className="text-indigo-400 font-mono text-sm uppercase px-2 py-1 border border-indigo-500/30 rounded bg-indigo-500/10 tracking-widest">CDIF</span>
+                        Clinical Data Ingress Fabric <span className="text-indigo-400 font-mono text-sm uppercase px-2 py-1 border border-indigo-500/30 rounded bg-indigo-500/10 tracking-widest">CDIF</span>
                     </h1>
                     <p className="text-base font-medium text-slate-400 tracking-wide mt-2">
                         Technical Demonstration
@@ -46,13 +46,13 @@ export default function LandingPage() {
                     <p>
                         CDIF is a Five-Vector ETL schema demonstration for high-velocity clinical telemetry ingress.
                         It implements deterministic boundary validation, urgency-indexed transformation, and
-                        append-only JSONL persistence — all sample data, no PHI.
+                        append-only JSONL persistence. All sample data, no PHI.
                     </p>
                     <p>
                         The schema enforces zero-trust invariants at every layer: inputs are treated as
                         hostile until validated against strict Pydantic constraints
-                        (<code className="text-indigo-300 font-mono text-sm">^[A-Z0-9]{{6,12}}$</code>, HR 30–220 bpm,
-                        SpO₂ 70–100%, temp 34–43 °C). No record is persisted before passing all constraints.
+                        (<code className="text-indigo-300 font-mono text-sm">^[A-Z0-9]&#123;6,12&#125;$</code>, HR 30-220 bpm,
+                        SpO2 70-100%, temp 34-43 C). No record is persisted before passing all constraints.
                     </p>
                     <p>
                         Urgency indexing promotes <code className="text-indigo-300 font-mono text-sm">CRITICAL</code> status
