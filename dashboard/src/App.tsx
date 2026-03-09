@@ -10,7 +10,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import LandingPage from './pages/Landing';
 import DashboardPage from './pages/Dashboard';
-import ArchitecturePage from './pages/Architecture';
+import ArchitecturePage from './pages/Topology';
 import AuditPage from './pages/Audit';
 import './index.css';
 
