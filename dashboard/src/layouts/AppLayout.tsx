@@ -110,14 +110,14 @@ export default function AppLayout() {
 
                 {/* Page Content with Framer Motion AnimatePresence */}
                 <div className="p-6 md:p-8 flex-1 w-full max-w-[1600px] mx-auto overflow-hidden relative">
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence>
                         <motion.div
-                            key={location.key}
+                            key={location.pathname}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                            className="h-full"
+                            className="h-full flex flex-col"
                         >
                             <Outlet />
                         </motion.div>

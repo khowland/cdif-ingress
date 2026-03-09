@@ -106,11 +106,11 @@ export default function ArchitecturePage() {
                         >
                             <h3 className="text-lg font-bold text-indigo-300 mb-2">{NODES[activeNode].label} Details</h3>
                             <p className="text-sm text-slate-400 leading-relaxed font-mono">
-                                {activeNode === 0 && "> Receiving data from sensors. We verify everything as it enters and check basic formatting."}
-                                {activeNode === 1 && "> Running safety checks. We make sure vital signs like Heart Rate and Temp are within normal human ranges."}
-                                {activeNode === 2 && "> Analyzing the data. We calculate a priority score to move the most urgent cases to the front."}
-                                {activeNode === 3 && "> Final security check. We use digital guardrails to block suspicious or broken signals."}
-                                {activeNode === 4 && "> Saving data for good. We build a permanent record in the vault that can never be changed."}
+                                {activeNode === 0 && "> [Ac] Ingress boundary active. Raw payload received on POST /etl/clinical/sample; routed to [Lo] validation pipeline."}
+                                {activeNode === 1 && "> [Lo] Invariant enforcement: Pydantic ClinicalTelemetry validates HR (30-220 bpm), SpO2 (70-100%), temp (34-43 C), patient_id (^[A-Z0-9]{6,12}$)."}
+                                {activeNode === 2 && "> [T] Transformer: urgency_index = 1.0 for CRITICAL status or HR > 120 bpm; 0.5 otherwise. ISO-8601 timestamp and BRONZE_SAMPLE fabric_layer annotated."}
+                                {activeNode === 3 && "> [η] Resonance monitor active. Anomalous payloads rejected at boundary; validation failures logged to structured stdout."}
+                                {activeNode === 4 && "> [St] Vault write: enriched record appended to sample_clinical_vault.jsonl with UUID ingress_id. Append-only; no mutation permitted."}
                             </p>
                         </motion.div>
                     </AnimatePresence>

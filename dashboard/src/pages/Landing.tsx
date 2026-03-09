@@ -34,7 +34,7 @@ export default function LandingPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f10_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f10_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none mix-blend-overlay"></div>
 
                 <h2 className="text-sm font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6">
-                    <Target className="w-5 h-5 text-indigo-400" /> Our Goal
+                    <Target className="w-5 h-5 text-indigo-400" /> Architectural Objective
                 </h2>
 
                 <motion.div
@@ -44,13 +44,20 @@ export default function LandingPage() {
                     className="relative z-10 text-slate-300 leading-relaxed max-w-4xl text-base space-y-6 font-medium selection:bg-indigo-500/30"
                 >
                     <p>
-                        CDIF is a technical demonstration of a fast, secure way to move and organize healthcare data.
+                        CDIF is a Five-Vector ETL schema demonstration for high-velocity clinical telemetry ingress.
+                        It implements deterministic boundary validation, urgency-indexed transformation, and
+                        append-only JSONL persistence — all sample data, no PHI.
                     </p>
                     <p>
-                        It shows how digital guardrails make sure the AI follows the rules and never sees what it shouldn't.
+                        The schema enforces zero-trust invariants at every layer: inputs are treated as
+                        hostile until validated against strict Pydantic constraints
+                        (<code className="text-indigo-300 font-mono text-sm">^[A-Z0-9]{{6,12}}$</code>, HR 30–220 bpm,
+                        SpO₂ 70–100%, temp 34–43 °C). No record is persisted before passing all constraints.
                     </p>
                     <p>
-                        We use AI tools to move data at light speed with complete control. We follow the strictest security rules and digital guardrails to keep everything safe.
+                        Urgency indexing promotes <code className="text-indigo-300 font-mono text-sm">CRITICAL</code> status
+                        and HR &gt; 120 bpm records to priority tier 1.0, enabling downstream triage pipelines
+                        to apply differential routing without re-parsing raw fields.
                     </p>
                 </motion.div>
             </section>
@@ -68,9 +75,10 @@ export default function LandingPage() {
                         <ShieldCheck className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Protect the Edge</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[Lo] Boundary Validation</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            We run safety checks on all incoming data to find errors early. We verify everything at the door to keep your data safe.
+                            Pydantic schema enforcement at the ingress boundary. All payloads validated
+                            against deterministic constraints before any transformation or persistence.
                         </p>
                     </div>
                 </motion.section>
@@ -85,9 +93,10 @@ export default function LandingPage() {
                         <Zap className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Clean Your Results</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[T] Transformation Layer</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            We use digital tools to keep the AI on track and deliver reliable results. We clean your records to help builders create better clinical tools.
+                            Deterministic urgency scoring, ISO-8601 timestamp enrichment, and
+                            BRONZE_SAMPLE fabric-layer annotation applied before vault write.
                         </p>
                     </div>
                 </motion.section>
@@ -102,9 +111,10 @@ export default function LandingPage() {
                         <ArrowRight className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Move Critical Info</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[Ac] Priority Dispatch</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            We analyze vital signs like Heart Rate and Temperature at light speed. We move the most important data through the system first with complete control.
+                            FastAPI actuator surface exposing <code>POST /etl/clinical/sample</code>.
+                            Urgency index 1.0 records are flagged for priority triage routing.
                         </p>
                     </div>
                 </motion.section>
@@ -119,32 +129,33 @@ export default function LandingPage() {
                         <Database className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Build Safe Archives</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[St] Immutable Vault</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            We use a permanent storage system that no one can change once saved. This keeps your information secure with complete control at high speed.
+                            Append-only JSONL persistence. Each enriched record is idempotently
+                            written with a UUID ingress ID and UTC timestamp for full auditability.
                         </p>
                     </div>
                 </motion.section>
 
             </div>
 
-            {/* Ultra-Glossy Animated Infographic */}
+            {/* Five-Vector Pipeline Infographic */}
             <motion.section
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6, duration: 0.7 }}
-                className="bg-black border border-indigo-500/20 rounded-2xl p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden mt-6"
+                className="bg-black border border-indigo-500/20 rounded-2xl p-8 backdrop-blur-xl shadow-2xl relative mt-6"
             >
                 {/* Background Grid & Glows */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.05)_0%,transparent_50%)] pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.05)_0%,transparent_50%)] pointer-events-none rounded-2xl"></div>
 
                 <div className="flex flex-col gap-8 h-full relative z-10">
                     <div className="flex justify-between items-center text-xs font-mono tracking-widest text-slate-500 uppercase pb-4 border-b border-indigo-500/10">
-                        <span>Process Infographic</span>
-                        <span className="flex items-center gap-2 text-indigo-400"><Activity className="w-3 h-3" /> Live Data Flow Execution</span>
+                        <span>Five-Vector ETL Pipeline</span>
+                        <span className="flex items-center gap-2 text-indigo-400"><Activity className="w-3 h-3" /> Architecting Sovereign Mesh</span>
                     </div>
 
-                    <div className="h-48 w-full flex items-center justify-between px-4 md:px-12 relative">
+                    <div className="min-h-[14rem] w-full flex items-center justify-between px-4 md:px-12 relative pb-12">
 
                         {/* Connecting Lines */}
                         <div className="absolute top-1/2 left-16 right-16 h-0.5 bg-slate-800 -translate-y-1/2 z-0 hidden md:block">
@@ -156,16 +167,16 @@ export default function LandingPage() {
                             />
                         </div>
 
-                        {/* Node 1 */}
+                        {/* Node 1: [Lo] Validate */}
                         <motion.div className="z-10 bg-slate-900 border border-slate-700 p-4 rounded-xl shadow-lg flex flex-col items-center gap-3 relative">
                             <Network className="w-8 h-8 text-slate-400" />
-                            <div className="text-[10px] font-mono tracking-widest text-white uppercase">Entrance</div>
-                            <div className="absolute -bottom-8 text-[9px] text-slate-500 tracking-wide font-mono whitespace-nowrap">Verify Everything</div>
+                            <div className="text-[10px] font-mono tracking-widest text-white uppercase">[Lo] Validate</div>
+                            <div className="absolute -bottom-8 text-[9px] text-slate-500 tracking-wide font-mono whitespace-nowrap">Schema Enforcement</div>
                         </motion.div>
 
                         <ArrowRight className="w-6 h-6 text-slate-600 block md:hidden" />
 
-                        {/* Node 2 */}
+                        {/* Node 2: [T] Transform */}
                         <motion.div
                             className="z-10 bg-indigo-950 border border-indigo-500 p-4 rounded-xl shadow-[0_0_20px_rgba(99,102,241,0.2)] flex flex-col items-center gap-3 relative"
                             initial={{ y: 0 }}
@@ -173,22 +184,22 @@ export default function LandingPage() {
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                         >
                             <Hexagon className="w-8 h-8 text-indigo-400" />
-                            <div className="text-[10px] font-mono tracking-widest text-indigo-100 uppercase">Analysis</div>
+                            <div className="text-[10px] font-mono tracking-widest text-indigo-100 uppercase">[T] Transform</div>
                             <motion.div
                                 className="absolute -inset-1 border border-indigo-500/30 rounded-xl"
                                 animate={{ opacity: [0, 1, 0], scale: [1, 1.1, 1] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
                             />
-                            <div className="absolute -bottom-8 text-[9px] text-emerald-400 tracking-wide font-mono w-max">Reliable Results</div>
+                            <div className="absolute -bottom-8 text-[9px] text-emerald-400 tracking-wide font-mono w-max">Urgency Indexing</div>
                         </motion.div>
 
                         <ArrowRight className="w-6 h-6 text-slate-600 block md:hidden" />
 
-                        {/* Node 3 */}
+                        {/* Node 3: [St] Persist */}
                         <motion.div className="z-10 bg-emerald-950 border border-emerald-500 p-4 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.2)] flex flex-col items-center gap-3 relative">
                             <Server className="w-8 h-8 text-emerald-400" />
-                            <div className="text-[10px] font-mono tracking-widest text-emerald-100 uppercase">Storage Hub</div>
-                            <div className="absolute -bottom-8 text-[9px] text-emerald-500/80 tracking-wide font-mono w-max">Move to Vault</div>
+                            <div className="text-[10px] font-mono tracking-widest text-emerald-100 uppercase">[St] Persist</div>
+                            <div className="absolute -bottom-8 text-[9px] text-emerald-500/80 tracking-wide font-mono w-max">JSONL Vault Append</div>
                         </motion.div>
 
                     </div>
