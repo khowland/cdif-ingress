@@ -1,0 +1,7 @@
+# Clinical Data Ingress Fabric (CDIF) — Python dependencies
+# Five-Vector ETL demo. Sample data only.
+# Pin versions for reproducible builds.
+
+fastapi==0.115.11
+uvicorn[standard]==0.34.0
+pydantic==2.10.6
