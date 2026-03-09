@@ -7,6 +7,7 @@
 
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
+import LandingPage from './pages/Landing';
 import DashboardPage from './pages/Dashboard';
 import ArchitecturePage from './pages/Architecture';
 import AuditPage from './pages/Audit';
@@ -17,11 +18,12 @@ export default function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<Navigate to="/telemetry" replace />} />
+          <Route index element={<Navigate to="/overview" replace />} />
+          <Route path="overview" element={<LandingPage />} />
           <Route path="telemetry" element={<DashboardPage />} />
           <Route path="topology" element={<ArchitecturePage />} />
           <Route path="audit" element={<AuditPage />} />
-          <Route path="*" element={<Navigate to="/telemetry" replace />} />
+          <Route path="*" element={<Navigate to="/overview" replace />} />
         </Route>
       </Routes>
     </HashRouter>

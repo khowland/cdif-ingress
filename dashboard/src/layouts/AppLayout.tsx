@@ -9,6 +9,7 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 }
 
 const NAV_ITEMS = [
+    { path: '/overview', icon: <Hexagon className="w-4 h-4" />, label: 'Overview' },
     { path: '/telemetry', icon: <Activity className="w-4 h-4" />, label: 'Live Telemetry' },
     { path: '/topology', icon: <Hexagon className="w-4 h-4" />, label: 'Active Topology' },
     { path: '/audit', icon: <Fingerprint className="w-4 h-4" />, label: 'Audit Trail' },
@@ -33,15 +34,14 @@ export default function AppLayout() {
                             <Shield className="w-6 h-6 text-indigo-400" strokeWidth={1.5} />
                         </div>
                         <div>
-                            <div>
-                                <div className="text-sm font-semibold tracking-tight text-white flex items-center gap-2">
-                                    CDIF Engine
-                                    <span className="bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider border border-amber-500/30">
-                                        Demo Only
-                                    </span>
-                                </div>
-                                <div className="text-[10px] font-mono text-indigo-400/80 uppercase tracking-widest mt-0.5">Terminal v2.1</div>
-                            </div>            </div>
+                            <div className="text-sm font-semibold tracking-tight text-white flex items-center gap-2">
+                                CDIF Engine
+                                <span className="bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider border border-amber-500/30">
+                                    Demo Only
+                                </span>
+                            </div>
+                            <div className="text-[10px] font-mono text-indigo-400/80 uppercase tracking-widest mt-0.5">Terminal v2.1</div>
+                        </div>
                     </div>
                 </div>
 
@@ -94,36 +94,36 @@ export default function AppLayout() {
                     <div className="flex items-center gap-6 font-mono text-[10px] tracking-widest text-slate-500">
                         <div className="flex items-center gap-2">
                             NODE LATENCY <span className="text-emerald-400 font-bold">14ms</span>
-                        </div>            </div>
-                    <div className="flex items-center gap-2">
-                        INGRESS RATE <span className="text-indigo-400 font-bold">~400 ops/s</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            INGRESS RATE <span className="text-indigo-400 font-bold">~400 ops/s</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            ACTIVE
+                        </div>
                     </div>
-                    <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        ACTIVE
-                    </div>
-                </div>
-            </header>
+                </header>
 
-            {/* Page Content with Framer Motion AnimatePresence */}
-            <div className="p-6 md:p-8 flex-1 w-full max-w-[1600px] mx-auto overflow-hidden relative">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={location.pathname}
-                        initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                        exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
-                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-full"
-                    >
-                        <Outlet />
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-        </main>
-        </div >
+                {/* Page Content with Framer Motion AnimatePresence */}
+                <div className="p-6 md:p-8 flex-1 w-full max-w-[1600px] mx-auto overflow-hidden relative">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={location.pathname}
+                            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+                            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                            exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            className="h-full"
+                        >
+                            <Outlet />
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </main>
+        </div>
     );
 }
