@@ -35,12 +35,12 @@ export default function AppLayout() {
                         </div>
                         <div>
                             <div className="text-sm font-semibold tracking-tight text-white flex items-center gap-2">
-                                CDIF Pipeline
+                                Data Pipeline
                                 <span className="bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider border border-amber-500/30">
                                     Demo Only
                                 </span>
                             </div>
-                            <div className="text-[10px] font-mono text-indigo-400/80 uppercase tracking-widest mt-0.5">Dashboard v2.1</div>
+                            <div className="text-[10px] font-mono text-indigo-400/80 uppercase tracking-widest mt-0.5">AI ETL Demo</div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ export default function AppLayout() {
                 <div className="p-4 border-t border-indigo-500/10">
                     <button className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-all">
                         <LogOut className="w-4 h-4" />
-                        <span>End Session</span>
+                        <span>Exit Demo</span>
                     </button>
                 </div>
             </motion.aside>
@@ -88,15 +88,15 @@ export default function AppLayout() {
                 <header className="sticky top-0 z-30 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-indigo-500/10 p-4 flex items-center justify-between">
 
                     <div className="text-[10px] font-mono font-bold text-amber-500 flex items-center gap-2 border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 rounded uppercase shadow-[0_0_15px_rgba(245,158,11,0.15)]">
-                        <span className="animate-pulse">⚠️</span> DEMO ENVIRONMENT - SIMULATED DATA
+                        <span className="animate-pulse">⚠️</span> DEMO - ALL DATA IS SIMULATED
                     </div>
 
                     <div className="flex items-center gap-6 font-mono text-[10px] tracking-widest text-slate-500">
                         <div className="flex items-center gap-2">
-                            SYSTEM LATENCY <span className="text-emerald-400 font-bold">14ms</span>
+                            PIPELINE LATENCY <span className="text-emerald-400 font-bold">14ms</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            DATA SPEED <span className="text-indigo-400 font-bold">~400 ops/s</span>
+                            THROUGHPUT <span className="text-indigo-400 font-bold">~400 ops/s</span>
                         </div>
                         <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400">
                             <span className="relative flex h-2 w-2">

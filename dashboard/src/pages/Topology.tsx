@@ -18,22 +18,22 @@ import { Network, Database, Hexagon, Lock, Cpu, ArrowRight } from 'lucide-react'
  */
 
 const NODE_DETAILS = [
-    "> [Ac] Data arrives at the ingress endpoint and is queued for validation.",
-    "> [Lo] Each record is checked against required field rules. Records that fail any check are rejected and logged before any further processing.",
-    "> [T] Valid records are scored for priority and given a timestamp. High-priority cases are flagged for expedited routing downstream.",
-    "> [η] The monitoring layer watches all records for anomalies and logs every outcome. All rejections and approvals are captured for audit.",
-    "> [St] The processed record is written to secure, append-only storage with a unique ID. Once written, no changes are permitted."
+    "> Data arrives and is immediately queued for processing. The system handles the volume so your team does not have to.",
+    "> Every record is checked against the rules. Anything that does not pass is rejected and logged right here, before it can cause problems downstream.",
+    "> Clean data gets enriched. Records are scored, timestamped, and tagged automatically. High-priority items are flagged without anyone lifting a finger.",
+    "> The pipeline watches itself. Every outcome is logged. Anomalies are caught. Nothing slips through without a record of it.",
+    "> The final record lands in secure, permanent storage. Timestamped. Traceable. Immutable. Ready for audit at any time."
 ];
 
 export default function ArchitecturePage() {
     const [activeNode, setActiveNode] = useState(0);
 
     const NODES = [
-        { id: 'ingress', Icon: Network,  label: 'Ingress Point',       tier: 'API Layer',  status: 'Online' },
-        { id: 'logic',   Icon: Hexagon,  label: 'Boundary Validation', tier: 'Validation', status: 'Strict' },
-        { id: 'engine',  Icon: Cpu,      label: 'Transformation',      tier: 'Enrichment',  status: 'Active' },
-        { id: 'gate',    Icon: Lock,     label: 'Resonance Monitor',   tier: 'Monitoring',  status: 'Secure' },
-        { id: 'vault',   Icon: Database, label: 'Immutable Vault',     tier: 'Storage',   status: 'Saving' }
+        { id: 'ingress', Icon: Network,  label: 'Data Intake',       tier: 'Intake',  status: 'Online' },
+        { id: 'logic',   Icon: Hexagon,  label: 'Validation', tier: 'Checks', status: 'Strict' },
+        { id: 'engine',  Icon: Cpu,      label: 'Enrichment',      tier: 'Enrich',  status: 'Active' },
+        { id: 'gate',    Icon: Lock,     label: 'Quality Watch',   tier: 'Monitor',  status: 'Secure' },
+        { id: 'vault',   Icon: Database, label: 'Secure Storage',     tier: 'Store',   status: 'Saving' }
     ];
 
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function ArchitecturePage() {
                         Active Topology <Hexagon className="w-5 h-5 text-indigo-400" />
                     </h1>
                     <p className="text-sm font-medium text-slate-500 tracking-wide mt-1">
-                        Clinical Data Ingress Fabric (CDIF) - Five-Vector ETL Pipeline
+                        See how data moves through each stage of the AI pipeline
                     </p>
                 </div>
             </motion.div>
@@ -121,7 +121,7 @@ export default function ArchitecturePage() {
                             transition={{ duration: 0.2 }}
                             className="relative z-10"
                         >
-                            <h3 className="text-lg font-bold text-indigo-300 mb-2">{NODES[activeNode].label}</h3>
+                            <h3 className="text-lg font-bold text-indigo-300 mb-2">Stage: {NODES[activeNode].label}</h3>
                             <p className="text-sm text-slate-400 leading-relaxed font-mono">
                                 {NODE_DETAILS[activeNode]}
                             </p>

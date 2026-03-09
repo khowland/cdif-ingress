@@ -21,10 +21,10 @@ export default function LandingPage() {
             >
                 <div>
                     <h1 className="text-3xl font-semibold tracking-tight text-white flex items-center gap-3">
-                        Clinical Data Ingress Fabric <span className="text-indigo-400 font-mono text-sm uppercase px-2 py-1 border border-indigo-500/30 rounded bg-indigo-500/10 tracking-widest">CDIF</span>
+                        AI-Powered Data Pipeline <span className="text-indigo-400 font-mono text-sm uppercase px-2 py-1 border border-indigo-500/30 rounded bg-indigo-500/10 tracking-widest">CDIF</span>
                     </h1>
                     <p className="text-base font-medium text-slate-400 tracking-wide mt-2">
-                        Portfolio Demonstration
+                        A demonstration of AI-assisted data ingestion with built-in guardrails
                     </p>
                 </div>
             </motion.div>
@@ -34,7 +34,7 @@ export default function LandingPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f10_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f10_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none mix-blend-overlay"></div>
 
                 <h2 className="text-sm font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6">
-                    <Target className="w-5 h-5 text-indigo-400" /> What This Demonstrates
+                    <Target className="w-5 h-5 text-indigo-400" /> What You Are Looking At
                 </h2>
 
                 <motion.div
@@ -44,19 +44,19 @@ export default function LandingPage() {
                     className="relative z-10 text-slate-300 leading-relaxed max-w-4xl text-base space-y-6 font-medium selection:bg-indigo-500/30"
                 >
                     <p>
-                        This is a working demonstration of how I design and build secure data pipelines with AI.
-                        The scenario is healthcare data, but the architecture applies anywhere sensitive information
-                        needs to move safely, quickly, and reliably.
+                        This is a portfolio demonstration of AI-assisted data pipeline design.
+                        The scenario is healthcare, but the pattern applies anywhere data needs to move
+                        safely, accurately, and at scale - finance, logistics, government, or enterprise IT.
                     </p>
                     <p>
-                        The system is built on a zero-trust security model. AI handles the speed and scale.
-                        Strict rules handle the safety. Every record is verified before it moves,
-                        and nothing is stored until it earns its place.
+                        AI handles the speed, volume, and routing. Built-in guardrails handle the safety.
+                        Nothing enters the system without being checked. Nothing is stored without being verified.
+                        The result is a pipeline that is faster than manual processes and significantly more accurate.
                     </p>
                     <p>
-                        The full journey from arrival to secure storage is logged and auditable at every step.
-                        High-priority items are identified and routed automatically. No manual intervention required.
-                        All data in this demo is simulated. No real patient information is used.
+                        Every action is logged. Every decision is traceable. High-priority items are flagged and routed without
+                        anyone having to ask. The team stays focused on outcomes, not overhead.
+                        All data shown is simulated for demonstration purposes.
                     </p>
                 </motion.div>
             </section>
@@ -76,7 +76,7 @@ export default function LandingPage() {
                     <div>
                         <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Data Validation</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            Every record is checked the moment it arrives. Invalid data is rejected before it can cause problems downstream.
+                            Data is checked the moment it arrives. Anything that does not meet the standard is stopped before it enters the system.
                         </p>
                     </div>
                 </motion.section>
@@ -93,7 +93,7 @@ export default function LandingPage() {
                     <div>
                         <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Smart Enrichment</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            Valid records are automatically scored and tagged. The system knows what needs attention without being told.
+                            Clean data gets smarter. Records are scored, tagged, and prioritized automatically so the right information reaches the right place at the right time.
                         </p>
                     </div>
                 </motion.section>
@@ -110,7 +110,7 @@ export default function LandingPage() {
                     <div>
                         <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Secure Intake</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            A monitored endpoint receives all incoming data. The system is always watching and always ready.
+                            A secure, monitored entry point handles all incoming data. Volume spikes, edge cases, and anomalies are caught in real time.
                         </p>
                     </div>
                 </motion.section>
@@ -127,7 +127,7 @@ export default function LandingPage() {
                     <div>
                         <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Audit-Ready Storage</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            Every record is stored permanently with a timestamp and a unique ID. Nothing can be altered after it is written.
+                            Every record lands in permanent, tamper-proof storage with a timestamp and a unique ID. Full traceability. No exceptions.
                         </p>
                     </div>
                 </motion.section>
@@ -146,7 +146,7 @@ export default function LandingPage() {
 
                 <div className="flex flex-col gap-8 h-full relative z-10">
                     <div className="flex justify-between items-center text-xs font-mono tracking-widest text-slate-500 uppercase pb-4 border-b border-indigo-500/10">
-                        <span>Five-Vector ETL Pipeline</span>
+                        <span>AI Data Pipeline Flow</span>
                         <span className="flex items-center gap-2 text-indigo-400"><Activity className="w-3 h-3" /> Live Pipeline View</span>
                     </div>
 
@@ -166,7 +166,7 @@ export default function LandingPage() {
                         <motion.div className="z-10 bg-slate-900 border border-slate-700 p-4 rounded-xl shadow-lg flex flex-col items-center gap-3 relative">
                             <Network className="w-8 h-8 text-slate-400" />
                             <div className="text-[10px] font-mono tracking-widest text-white uppercase">[Lo] Validate</div>
-                            <div className="absolute -bottom-8 text-[9px] text-slate-500 tracking-wide font-mono whitespace-nowrap">Schema Enforcement</div>
+                            <div className="absolute -bottom-8 text-[9px] text-slate-500 tracking-wide font-mono whitespace-nowrap">Input Checks</div>
                         </motion.div>
 
                         <ArrowRight className="w-6 h-6 text-slate-600 block md:hidden" />

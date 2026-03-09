@@ -39,7 +39,7 @@ export default function AuditPage() {
                         System Audit <Fingerprint className="w-5 h-5 text-indigo-400" />
                     </h1>
                     <p className="text-sm font-medium text-slate-500 tracking-wide mt-1">
-                        Clinical Data Ingress Fabric (CDIF): Historical Query and Logging Diagnostics
+                        Full activity log - every decision, every record, every outcome
                     </p>
                 </div>
             </motion.div>
@@ -49,33 +49,33 @@ export default function AuditPage() {
                 {/* CLI Tail Output Panel */}
                 <section className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-6 backdrop-blur-md shadow-2xl flex flex-col">
                     <h2 className="text-xs font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
-                        <Terminal className="w-4 h-4" /> Live System Logs
+                        <Terminal className="w-4 h-4" /> Activity Log
                     </h2>
                     <div className="flex-1 bg-black p-4 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-400/80 overflow-y-auto leading-loose whitespace-pre-wrap">
-                        {`[SYS] CDIF v1.0.0 starting up | environment=DEMO
-[Ac] Ingress endpoint online | accepting records | health check active
-[Lo] Validation schema loaded | v1.0
-[St] Secure storage ready | append-only mode
-[T]  Enrichment layer ready | priority scoring + timestamp active
+                        {`[SYS] Pipeline starting | environment=DEMO | mode=SIMULATED
+[Ac] Intake endpoint online | ready to receive | health=OK
+[Lo] Validation rules loaded | all checks active
+[St] Secure storage ready | append-only | tamper-proof
+[T]  Enrichment layer ready | scoring + tagging active
 [η] Resonance subsystem nominal. Boundary enforcement active; all ingress events logged.
-[WARN] INGRESS_ATTEMPT | record=NODE412 | status=CRITICAL | priority=HIGH
-[Lo] VALIDATION_FAIL | record='node-412' | rejected: invalid record ID format
-[η] INGRESS_OK | record=PT001A | status=CRITICAL | priority=HIGH | id=a3f7c2e1
-[St] Record written | stored with unique ID
-[η] HEALTH_CHECK | status=NOMINAL | records_stored=1 | system=CDIF v1.0.0`}
+[WARN] RECORD_RECEIVED | id=NODE412 | status=CRITICAL | priority=HIGH
+[Lo] VALIDATION_FAIL | id='node-412' | reason: ID format not accepted | record blocked
+[η] RECORD_ACCEPTED | id=PT001A | priority=HIGH | pipeline_id=a3f7c2e1
+[St] STORED | record written | unique ID assigned | immutable
+[η] HEALTH_CHECK | status=NOMINAL | records_stored=1 | all systems OK`}
                     </div>
                 </section>
 
                 {/* Cluster Metrics Panel */}
                 <section className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-6 backdrop-blur-md shadow-2xl">
                     <h2 className="text-xs font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
-                        <HardDrive className="w-4 h-4" /> Storage & Analysis Metrics
+                        <HardDrive className="w-4 h-4" /> Pipeline Metrics
                     </h2>
                     <div className="space-y-6">
 
                         <div>
                             <div className="flex justify-between text-xs font-mono text-slate-400 mb-2">
-                                <span>Vault Capacity Utilization</span>
+                                <span>Storage Utilization</span>
                                 <span className="text-emerald-400">14.2%</span>
                             </div>
                             <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
@@ -85,7 +85,7 @@ export default function AuditPage() {
 
                         <div>
                             <div className="flex justify-between text-xs font-mono text-slate-400 mb-2">
-                                <span>Heuristic Anomaly Detection Rate</span>
+                                <span>Anomaly Detection Rate</span>
                                 <span className="text-amber-500">12.8%</span>
                             </div>
                             <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
@@ -95,7 +95,7 @@ export default function AuditPage() {
 
                         <div>
                             <div className="flex justify-between text-xs font-mono text-slate-400 mb-2">
-                                <span>Zero-Trust Rejections (Daily)</span>
+                                <span>Records Blocked Today</span>
                                 <span className="text-rose-500">2,140</span>
                             </div>
                             <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
