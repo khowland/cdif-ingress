@@ -8,7 +8,7 @@ interface TelemetryRecord {
     timestamp: string;
     metrics: { hr: number; spo2: number; temp: number };
     heuristicScore: number;
-    status: 'INGESTED' | 'QUARANTINED';
+    status: 'VERIFIED' | 'BLOCKED';
 }
 
 const tableVariants = {
@@ -37,7 +37,7 @@ export default function DashboardPage() {
                     temp: 36.5 + (Math.random() * 2 - 1),
                 },
                 heuristicScore: isAnomaly ? 0.92 + Math.random() * 0.08 : 0.1 + Math.random() * 0.4,
-                status: isAnomaly ? 'QUARANTINED' : 'INGESTED'
+                status: isAnomaly ? 'BLOCKED' : 'VERIFIED'
             };
 
             setStream(prev => [newRecord, ...prev].slice(0, 8));
@@ -57,12 +57,12 @@ export default function DashboardPage() {
                         Real-Time Telemetry <ActivitySquare className="w-5 h-5 text-indigo-400" />
                     </h1>
                     <p className="text-sm font-medium text-slate-500 tracking-wide mt-1">
-                        Zero-Trust Gateway Heuristic Array
+                        Live Safety Monitoring Network
                     </p>
                 </div>
                 <div className="text-xs font-mono text-slate-500 flex flex-col items-end gap-1 border border-indigo-500/20 bg-indigo-500/5 px-4 py-2 rounded-lg">
-                    <div>PIPELINE: <span className="text-emerald-400 font-bold">STREAMING</span></div>
-                    <div>ENCRYPTION: <span className="text-indigo-400 font-bold">mTLS</span></div>
+                    <div>STATUS: <span className="text-emerald-400 font-bold">STREAMING</span></div>
+                    <div>SECURITY: <span className="text-indigo-400 font-bold">ENCRYPTED</span></div>
                 </div>
             </motion.div>
 
@@ -72,7 +72,7 @@ export default function DashboardPage() {
 
                 <div className="relative z-10 flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                     <h2 className="text-xs font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2">
-                        <Fingerprint className="w-4 h-4" /> Live Ingress Log
+                        <Fingerprint className="w-4 h-4" /> Live Data Stream
                     </h2>
                 </div>
 
@@ -80,11 +80,11 @@ export default function DashboardPage() {
                     <table className="w-full text-sm text-left whitespace-nowrap">
                         <thead className="text-[10px] font-mono tracking-widest text-slate-500 uppercase pb-4">
                             <tr>
-                                <th className="px-4 py-2 font-normal">Timestamp</th>
-                                <th className="px-4 py-2 font-normal">Source Ref</th>
-                                <th className="px-4 py-2 font-normal">Metrics Vector</th>
-                                <th className="px-4 py-2 font-normal">Heuristic Load</th>
-                                <th className="px-4 py-2 font-normal">Enforcement</th>
+                                <th className="px-4 py-2 font-normal">Arrival Time</th>
+                                <th className="px-4 py-2 font-normal">Remote Node</th>
+                                <th className="px-4 py-2 font-normal">Vital Signs</th>
+                                <th className="px-4 py-2 font-normal">Urgency Level</th>
+                                <th className="px-4 py-2 font-normal">Safety Status</th>
                             </tr>
                         </thead>
                         <motion.tbody
@@ -128,9 +128,9 @@ export default function DashboardPage() {
                                         </div>
                                     </td>
                                     <td className="px-4 py-4">
-                                        {record.status === 'INGESTED' ? (
+                                        {record.status === 'VERIFIED' ? (
                                             <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">
-                                                <CheckCircle2 className="w-3 h-3" /> COMMIT
+                                                <CheckCircle2 className="w-3 h-3" /> VERIFY
                                             </span>
                                         ) : (
                                             <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px]">
@@ -144,7 +144,7 @@ export default function DashboardPage() {
                     </table>
                     {stream.length === 0 && (
                         <div className="flex items-center justify-center h-40 text-xs font-mono text-slate-600 animate-pulse">
-                            Buffering Ingress Signals...
+                            Connecting to Medical Data Stream...
                         </div>
                     )}
                 </div>

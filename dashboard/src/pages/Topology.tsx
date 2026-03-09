@@ -1,65 +1,16 @@
-/**
- * @file Topology.tsx
- * @module CDIF/Pages/Topology
- * @description Active Topology view for the Clinical Data Ingress Fabric (CDIF).
- *
- * Renders the animated five-vector pipeline architecture flow, showing each
- * processing node in the ingress fabric with live state cycling.
- *
- * [Lo] Logic invariants:
- *   - NODES array is static; order defines the pipeline sequence.
- *   - activeNode cycles modulo NODES.length on a 1200 ms interval.
- *   - The interval is cleared on component unmount to prevent memory leaks.
- *   - All node detail strings are keyed by index; indices must stay in sync with NODES.
- */
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Network, Database, Hexagon, Lock, Cpu, ArrowRight } from 'lucide-react';
 
-/**
- * @typedef {Object} PipelineNode
- * @property {string}      id     - Unique node identifier.
- * @property {JSX.Element} icon   - Lucide icon element rendered inside the node card.
- * @property {string}      label  - Human-readable node label.
- * @property {string}      tier   - Processing tier name shown as a subtitle.
- * @property {string}      status - Operational status descriptor.
- */
-
-/** @type {PipelineNode[]} Five-vector pipeline node definitions — order is significant. */
 const NODES = [
-    { id: 'ingress', icon: <Network />, label: 'Ingress Point',       tier: 'Edge',        status: 'Online'    },
-    { id: 'logic',   icon: <Hexagon />, label: 'Deterministic Eval',  tier: 'Validation',  status: 'Strict'    },
-    { id: 'engine',  icon: <Cpu />,     label: 'Heuristic Engine',    tier: 'Computation', status: 'Nominal'   },
-    { id: 'gate',    icon: <Lock />,    label: 'Zero-Trust Gate',     tier: 'Enforcement', status: 'Active'    },
-    { id: 'vault',   icon: <Database />,label: 'Immutable Vault',     tier: 'Storage',     status: 'Appending' },
+    { id: 'ingress', icon: <Network />, label: 'Entrance', tier: 'Entrance', status: 'Online' },
+    { id: 'logic', icon: <Hexagon />, label: 'Safety Rules', tier: 'Verify', status: 'Strict' },
+    { id: 'engine', icon: <Cpu />, label: 'Analysis', tier: 'Clean', status: 'Active' },
+    { id: 'gate', icon: <Lock />, label: 'Security Check', tier: 'Protect', status: 'Secure' },
+    { id: 'vault', icon: <Database />, label: 'Safe Vault', tier: 'Archive', status: 'Saving' }
 ];
 
-/** @type {string[]} Detail panel descriptions indexed in sync with NODES. */
-const NODE_DETAILS = [
-    '> Executing edge termination. Stripping external TLS and validating payload schema structure parameters.',
-    '> Enforcing Pydantic deterministic logic. Assessing physiological bounds (HR: 30-220, temp_c) prior to computation.',
-    '> Deploying lightweight stochastic heuristic algorithm. Generating normalized severity array metric (0.00-1.00).',
-    '> Applying Zero-Trust verification. Dropping anomalous or non-compliant signals. Hard-enforcing network ingress SLA.',
-    '> Idempotent synchronous append to immutable storage vault. Emitting final deterministic payload logs.',
-];
-
-/**
- * TopologyPage component.
- *
- * Displays the Clinical Data Ingress Fabric (CDIF) five-vector pipeline topology
- * as an animated node graph with a cycling detail panel.
- *
- * [Lo] The setInterval handle stored in the useEffect closure is the sole mutation
- *      side-effect; all other state is derived from `activeNode` index.
- *
- * @returns {JSX.Element} Rendered topology page.
- */
-export default function TopologyPage() {
-    /**
-     * Index of the currently highlighted pipeline node.
-     * @type {[number, React.Dispatch<React.SetStateAction<number>>]}
-     */
+export default function ArchitecturePage() {
     const [activeNode, setActiveNode] = useState(0);
 
     useEffect(() => {
@@ -82,36 +33,32 @@ export default function TopologyPage() {
                         Active Topology <Hexagon className="w-5 h-5 text-indigo-400" />
                     </h1>
                     <p className="text-sm font-medium text-slate-500 tracking-wide mt-1">
-                        Clinical Data Ingress Fabric (CDIF) — Five-Vector Pipeline Architecture
+                        How Data Securely Moves Through the Pipeline
                     </p>
                 </div>
             </motion.div>
 
             <section className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-8 backdrop-blur-md shadow-2xl flex-1 relative overflow-hidden flex flex-col items-center justify-center">
 
+                {/* Center Infographic */}
                 <div className="relative z-10 w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-0 items-center">
                     {NODES.map((node, i) => {
                         const isActive = activeNode === i;
-                        const isPast   = activeNode > i;
+                        const isPast = activeNode > i;
 
                         return (
                             <div key={node.id} className="flex flex-col md:flex-row items-center relative group">
+
+                                {/* Visual Node */}
                                 <motion.div
                                     layout
                                     className={`
-                                        w-full md:w-auto relative flex flex-col items-center p-6 rounded-2xl border transition-all duration-500
-                                        ${isActive
-                                            ? 'bg-indigo-500/20 border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.3)] scale-110 z-20'
-                                            : isPast
-                                                ? 'bg-emerald-500/5 border-emerald-500/30'
-                                                : 'bg-slate-950/50 border-slate-800'}
-                                    `}
+                    w-full md:w-auto relative flex flex-col items-center p-6 rounded-2xl border transition-all duration-500
+                    ${isActive ? 'bg-indigo-500/20 border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.3)] scale-110 z-20' :
+                                            isPast ? 'bg-emerald-500/5 border-emerald-500/30' : 'bg-slate-950/50 border-slate-800'}
+                  `}
                                 >
-                                    <div className={`p-3 rounded-xl mb-4 transition-colors duration-500 ${
-                                        isActive ? 'bg-indigo-500/30 text-indigo-300' :
-                                        isPast   ? 'bg-emerald-500/10 text-emerald-400' :
-                                                   'bg-slate-800/50 text-slate-500'
-                                    }`}>
+                                    <div className={`p-3 rounded-xl mb-4 transition-colors duration-500 ${isActive ? 'bg-indigo-500/30 text-indigo-300' : isPast ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-800/50 text-slate-500'}`}>
                                         {node.icon}
                                     </div>
                                     <div className="text-center font-semibold text-slate-200 text-sm whitespace-nowrap">{node.label}</div>
@@ -128,6 +75,7 @@ export default function TopologyPage() {
                                     )}
                                 </motion.div>
 
+                                {/* Connector Line (Hide for last node in col view) */}
                                 {i < NODES.length - 1 && (
                                     <div className="flex-1 w-full md:w-16 h-8 md:h-0.5 my-2 md:my-0 flex items-center justify-center relative">
                                         <div className="absolute inset-0 bg-slate-800" />
@@ -145,6 +93,7 @@ export default function TopologyPage() {
                     })}
                 </div>
 
+                {/* Dynamic Detail Panel Box */}
                 <div className="w-full max-w-xl mt-16 p-6 rounded-xl border border-indigo-500/20 bg-black/60 shadow-[0_4px_40px_rgba(0,0,0,0.5)] relative overflow-hidden text-center min-h-[160px] flex flex-col justify-center">
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -157,7 +106,11 @@ export default function TopologyPage() {
                         >
                             <h3 className="text-lg font-bold text-indigo-300 mb-2">{NODES[activeNode].label} Details</h3>
                             <p className="text-sm text-slate-400 leading-relaxed font-mono">
-                                {NODE_DETAILS[activeNode]}
+                                {activeNode === 0 && "> Receiving data from sensors. We verify everything as it enters and check basic formatting."}
+                                {activeNode === 1 && "> Running safety checks. We make sure vital signs like Heart Rate and Temp are within normal human ranges."}
+                                {activeNode === 2 && "> Analyzing the data. We calculate a priority score to move the most urgent cases to the front."}
+                                {activeNode === 3 && "> Final security check. We use digital guardrails to block suspicious or broken signals."}
+                                {activeNode === 4 && "> Saving data for good. We build a permanent record in the vault that can never be changed."}
                             </p>
                         </motion.div>
                     </AnimatePresence>

@@ -49,27 +49,27 @@ export default function AuditPage() {
                 {/* CLI Tail Output Panel */}
                 <section className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-6 backdrop-blur-md shadow-2xl flex flex-col">
                     <h2 className="text-xs font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
-                        <Terminal className="w-4 h-4" /> CLI Tail Output
+                        <Terminal className="w-4 h-4" /> Live System Logs
                     </h2>
                     <div className="flex-1 bg-black p-4 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-400/80 overflow-y-auto leading-loose whitespace-pre-wrap">
-                        {`[SYS] Initiating Boot Sequence V2.1...
-[SYS] Binding Edge Listener 0.0.0.0:8080.
-[INF] Zero-Trust Interceptor mounted successfully.
-[NET] Established inbound TLS 1.3 socket constraint.
-[DBG] Heuristic Engine cold start - weights loaded.
-[WARN] Unrecognized packet heuristic 0.94 from NODE-412.
-[SEC] Action: QUARANTINED. IP dropped.
-[OP] Vault write OK. 142 records committed ms.
-[INF] Syncing cluster topology metrics...
-[OP] Health Check request received from ALB.
-[OP] 200 OK. Node healthy.`}
+                        {`[SYS] Dashboard V2.1 starting up...
+[SYS] Setting up safe entrance.
+[INF] Digital guardrails ready.
+[NET] Secure connection established.
+[DBG] Analysis system ready.
+[WARN] Alert: Unusual data pattern from NODE-412.
+[SEC] Action: BLOCKED for safety.
+[OP] Data moved to vault.
+[INF] Updating system health metrics...
+[OP] System health check passed.
+[OP] Everything running normally.`}
                     </div>
                 </section>
 
                 {/* Cluster Metrics Panel */}
                 <section className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-6 backdrop-blur-md shadow-2xl">
                     <h2 className="text-xs font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
-                        <HardDrive className="w-4 h-4" /> Cluster Metrics
+                        <HardDrive className="w-4 h-4" /> Storage & Analysis Metrics
                     </h2>
                     <div className="space-y-6">
 
