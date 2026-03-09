@@ -109,8 +109,8 @@ export default function AppLayout() {
                 </header>
 
                 {/* Page Content with Framer Motion AnimatePresence */}
-                <div className="p-6 md:p-8 flex-1 w-full max-w-[1600px] mx-auto overflow-hidden relative">
-                    <AnimatePresence>
+                <div className="p-6 md:p-8 flex-1 w-full max-w-[1600px] mx-auto overflow-y-auto relative">
+                    <AnimatePresence mode="wait">
                         <motion.div
                             key={location.pathname}
                             initial={{ opacity: 0, y: 10 }}
