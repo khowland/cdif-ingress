@@ -18,22 +18,22 @@ import { Network, Database, Hexagon, Lock, Cpu, ArrowRight } from 'lucide-react'
  */
 
 const NODE_DETAILS = [
-    "> [Ac] Ingress boundary active. Raw payload received on POST /etl/clinical/sample; routed to [Lo] validation pipeline.",
-    "> [Lo] Invariant enforcement: Pydantic ClinicalTelemetry validates HR (30-220 bpm), SpO2 (70-100%), temp (34-43 C), patient_id (^[A-Z0-9]{6,12}$).",
-    "> [T] Transformer: urgency_index = 1.0 for CRITICAL status or HR > 120 bpm; 0.5 otherwise. ISO-8601 timestamp and BRONZE_SAMPLE fabric_layer annotated.",
-    "> [η] Resonance monitor active. Anomalous payloads rejected at boundary; validation failures logged to structured stdout.",
-    "> [St] Vault write: enriched record appended to sample_clinical_vault.jsonl with UUID ingress_id. Append-only; no mutation permitted."
+    "> [Ac] Data arrives at the ingress endpoint and is queued for validation.",
+    "> [Lo] Each record is checked against required field rules. Records that fail any check are rejected and logged before any further processing.",
+    "> [T] Valid records are scored for priority and given a timestamp. High-priority cases are flagged for expedited routing downstream.",
+    "> [η] The monitoring layer watches all records for anomalies and logs every outcome. All rejections and approvals are captured for audit.",
+    "> [St] The processed record is written to secure, append-only storage with a unique ID. Once written, no changes are permitted."
 ];
 
 export default function ArchitecturePage() {
     const [activeNode, setActiveNode] = useState(0);
 
     const NODES = [
-        { id: 'ingress', Icon: Network,  label: 'Ingress Point',       tier: '[Ac] Actuator',  status: 'Online' },
-        { id: 'logic',   Icon: Hexagon,  label: 'Boundary Validation', tier: '[Lo] Invariant', status: 'Strict' },
-        { id: 'engine',  Icon: Cpu,      label: 'Transformation',      tier: '[T] Transform',  status: 'Active' },
-        { id: 'gate',    Icon: Lock,     label: 'Resonance Monitor',   tier: '[η] Resonance',  status: 'Secure' },
-        { id: 'vault',   Icon: Database, label: 'Immutable Vault',     tier: '[St] Storage',   status: 'Saving' }
+        { id: 'ingress', Icon: Network,  label: 'Ingress Point',       tier: 'API Layer',  status: 'Online' },
+        { id: 'logic',   Icon: Hexagon,  label: 'Boundary Validation', tier: 'Validation', status: 'Strict' },
+        { id: 'engine',  Icon: Cpu,      label: 'Transformation',      tier: 'Enrichment',  status: 'Active' },
+        { id: 'gate',    Icon: Lock,     label: 'Resonance Monitor',   tier: 'Monitoring',  status: 'Secure' },
+        { id: 'vault',   Icon: Database, label: 'Immutable Vault',     tier: 'Storage',   status: 'Saving' }
     ];
 
     useEffect(() => {

@@ -24,7 +24,7 @@ export default function LandingPage() {
                         Clinical Data Ingress Fabric <span className="text-indigo-400 font-mono text-sm uppercase px-2 py-1 border border-indigo-500/30 rounded bg-indigo-500/10 tracking-widest">CDIF</span>
                     </h1>
                     <p className="text-base font-medium text-slate-400 tracking-wide mt-2">
-                        Technical Demonstration
+                        Portfolio Demonstration
                     </p>
                 </div>
             </motion.div>
@@ -34,7 +34,7 @@ export default function LandingPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f10_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f10_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none mix-blend-overlay"></div>
 
                 <h2 className="text-sm font-mono font-semibold tracking-widest text-indigo-400/80 uppercase flex items-center gap-2 mb-6">
-                    <Target className="w-5 h-5 text-indigo-400" /> Architectural Objective
+                    <Target className="w-5 h-5 text-indigo-400" /> What This Demonstrates
                 </h2>
 
                 <motion.div
@@ -44,20 +44,19 @@ export default function LandingPage() {
                     className="relative z-10 text-slate-300 leading-relaxed max-w-4xl text-base space-y-6 font-medium selection:bg-indigo-500/30"
                 >
                     <p>
-                        CDIF is a Five-Vector ETL schema demonstration for high-velocity clinical telemetry ingress.
-                        It implements deterministic boundary validation, urgency-indexed transformation, and
-                        append-only JSONL persistence. All sample data, no PHI.
+                        This is a working demonstration of how I design and build secure data pipelines with AI.
+                        The scenario is healthcare data, but the architecture applies anywhere sensitive information
+                        needs to move safely, quickly, and reliably.
                     </p>
                     <p>
-                        The schema enforces zero-trust invariants at every layer: inputs are treated as
-                        hostile until validated against strict Pydantic constraints
-                        (<code className="text-indigo-300 font-mono text-sm">^[A-Z0-9]&#123;6,12&#125;$</code>, HR 30-220 bpm,
-                        SpO2 70-100%, temp 34-43 C). No record is persisted before passing all constraints.
+                        The system is built on a zero-trust security model. AI handles the speed and scale.
+                        Strict rules handle the safety. Every record is verified before it moves,
+                        and nothing is stored until it earns its place.
                     </p>
                     <p>
-                        Urgency indexing promotes <code className="text-indigo-300 font-mono text-sm">CRITICAL</code> status
-                        and HR &gt; 120 bpm records to priority tier 1.0, enabling downstream triage pipelines
-                        to apply differential routing without re-parsing raw fields.
+                        The full journey from arrival to secure storage is logged and auditable at every step.
+                        High-priority items are identified and routed automatically. No manual intervention required.
+                        All data in this demo is simulated. No real patient information is used.
                     </p>
                 </motion.div>
             </section>
@@ -75,10 +74,9 @@ export default function LandingPage() {
                         <ShieldCheck className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[Lo] Boundary Validation</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Data Validation</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            Pydantic schema enforcement at the ingress boundary. All payloads validated
-                            against deterministic constraints before any transformation or persistence.
+                            Every record is checked the moment it arrives. Invalid data is rejected before it can cause problems downstream.
                         </p>
                     </div>
                 </motion.section>
@@ -93,10 +91,9 @@ export default function LandingPage() {
                         <Zap className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[T] Transformation Layer</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Smart Enrichment</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            Deterministic urgency scoring, ISO-8601 timestamp enrichment, and
-                            BRONZE_SAMPLE fabric-layer annotation applied before vault write.
+                            Valid records are automatically scored and tagged. The system knows what needs attention without being told.
                         </p>
                     </div>
                 </motion.section>
@@ -111,10 +108,9 @@ export default function LandingPage() {
                         <ArrowRight className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[Ac] Priority Dispatch</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Secure Intake</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            FastAPI actuator surface exposing <code>POST /etl/clinical/sample</code>.
-                            Urgency index 1.0 records are flagged for priority triage routing.
+                            A monitored endpoint receives all incoming data. The system is always watching and always ready.
                         </p>
                     </div>
                 </motion.section>
@@ -129,10 +125,9 @@ export default function LandingPage() {
                         <Database className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">[St] Immutable Vault</h3>
+                        <h3 className="text-white font-semibold mb-2 text-sm tracking-wide">Audit-Ready Storage</h3>
                         <p className="text-slate-400 text-xs leading-relaxed font-mono">
-                            Append-only JSONL persistence. Each enriched record is idempotently
-                            written with a UUID ingress ID and UTC timestamp for full auditability.
+                            Every record is stored permanently with a timestamp and a unique ID. Nothing can be altered after it is written.
                         </p>
                     </div>
                 </motion.section>
@@ -152,7 +147,7 @@ export default function LandingPage() {
                 <div className="flex flex-col gap-8 h-full relative z-10">
                     <div className="flex justify-between items-center text-xs font-mono tracking-widest text-slate-500 uppercase pb-4 border-b border-indigo-500/10">
                         <span>Five-Vector ETL Pipeline</span>
-                        <span className="flex items-center gap-2 text-indigo-400"><Activity className="w-3 h-3" /> Architecting Sovereign Mesh</span>
+                        <span className="flex items-center gap-2 text-indigo-400"><Activity className="w-3 h-3" /> Live Pipeline View</span>
                     </div>
 
                     <div className="min-h-[14rem] w-full flex items-center justify-between px-4 md:px-12 relative pb-12">
@@ -190,7 +185,7 @@ export default function LandingPage() {
                                 animate={{ opacity: [0, 1, 0], scale: [1, 1.1, 1] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
                             />
-                            <div className="absolute -bottom-8 text-[9px] text-emerald-400 tracking-wide font-mono w-max">Urgency Indexing</div>
+                            <div className="absolute -bottom-8 text-[9px] text-emerald-400 tracking-wide font-mono w-max">Priority Scoring</div>
                         </motion.div>
 
                         <ArrowRight className="w-6 h-6 text-slate-600 block md:hidden" />
@@ -199,7 +194,7 @@ export default function LandingPage() {
                         <motion.div className="z-10 bg-emerald-950 border border-emerald-500 p-4 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.2)] flex flex-col items-center gap-3 relative">
                             <Server className="w-8 h-8 text-emerald-400" />
                             <div className="text-[10px] font-mono tracking-widest text-emerald-100 uppercase">[St] Persist</div>
-                            <div className="absolute -bottom-8 text-[9px] text-emerald-500/80 tracking-wide font-mono w-max">JSONL Vault Append</div>
+                            <div className="absolute -bottom-8 text-[9px] text-emerald-500/80 tracking-wide font-mono w-max">Secure Storage Write</div>
                         </motion.div>
 
                     </div>

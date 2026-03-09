@@ -52,17 +52,17 @@ export default function AuditPage() {
                         <Terminal className="w-4 h-4" /> Live System Logs
                     </h2>
                     <div className="flex-1 bg-black p-4 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-400/80 overflow-y-auto leading-loose whitespace-pre-wrap">
-                        {`[SYS] CDIF v1.0.0 initialising | fabric_layer=BRONZE_SAMPLE
-[Ac] FastAPI actuator surface active | POST /etl/clinical/sample | GET /health
-[Lo] Pydantic ClinicalTelemetry invariant schema loaded | v1.0
-[St] Vault path resolved | sample_clinical_vault.jsonl (append-only)
-[T]  Transformer ready | urgency scoring + ISO-8601 enrichment online
+                        {`[SYS] CDIF v1.0.0 starting up | environment=DEMO
+[Ac] Ingress endpoint online | accepting records | health check active
+[Lo] Validation schema loaded | v1.0
+[St] Secure storage ready | append-only mode
+[T]  Enrichment layer ready | priority scoring + timestamp active
 [η] Resonance subsystem nominal. Boundary enforcement active; all ingress events logged.
-[WARN] INGRESS_ATTEMPT | patient=NODE412 | hr=185 | status=CRITICAL | urgency_index=1.0
-[Lo] VALIDATION_FAIL | patient_id='node-412' | rejected: must match ^[A-Z0-9]{6,12}$
-[η] INGRESS_OK | patient=PT001A | hr=145 | spo2=94.5 | urgency=1.0 | id=a3f7c2e1
-[St] Vault append confirmed | record persisted with UUID ingress_id
-[η] HEALTH_CHECK | status=NOMINAL | vault_records=1 | fabric=CDIF v1.0.0`}
+[WARN] INGRESS_ATTEMPT | record=NODE412 | status=CRITICAL | priority=HIGH
+[Lo] VALIDATION_FAIL | record='node-412' | rejected: invalid record ID format
+[η] INGRESS_OK | record=PT001A | status=CRITICAL | priority=HIGH | id=a3f7c2e1
+[St] Record written | stored with unique ID
+[η] HEALTH_CHECK | status=NOMINAL | records_stored=1 | system=CDIF v1.0.0`}
                     </div>
                 </section>
 
