@@ -44,7 +44,7 @@ export default function LandingPage() {
                     className="relative z-10 text-slate-300 leading-relaxed max-w-4xl text-base space-y-6 font-medium selection:bg-indigo-500/30"
                 >
                     <p>
-                        This is a portfolio demonstration of AI-assisted data pipeline design.
+                        This is a portfolio demonstration of AI-assisted data pipeline design, for example a Clinical Data Ingress Fabric (CDIF) implementation.
                         The scenario is healthcare, but the pattern applies anywhere data needs to move
                         safely, accurately, and at scale - finance, logistics, government, or enterprise IT.
                     </p>
